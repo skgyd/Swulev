@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="section">    
+    <h2>검색 결과</h2>
+        {% for l in lectures %} 
+            <hr>
+            <div class="articles">
+                <a class="article" href="{{ l.get_absolute_url }}"> <!--해당 과목의 detail url로 연결-->
+                <h3>{{l.lecturename}}</h3>
+                <p class="text">
+                    <span class="professor">
+                        <span>교수명: {{l.professor}}</span>
+                        </span>
+                        <br>
+                        <span class="semester">
+                        <span>개설 학기: {{l.semester}}</span>
+                    </span><br>
+                </p>
+                </a>
+            </div>
+            {% endfor %}
+  </div>
+  
+{% endblock %}

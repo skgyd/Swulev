@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}마이페이지{% endblock %}
+{% block content %}
+<div class="section">
+  {{data.is_authenticated}}
+
+    <h2>내가 남긴 강의평</h2>
+    
+    {% for board in board %}
+    {% if board.user.userid == username %}
+    <div class="mylectures">
+      <span class="lecture">
+        <h3> <!-- 여기도 태그 안에 함수써서 내용가져오기 -->
+          <span class="name">{{board.lecture.lecturename}}</span>
+          <span class="professor">{{board.lecture.professor}}</span>
+        </h3>
+        <p class="rate">
+            <span class="star">
+              <span class="on" style="width: 100%;"><!--별점별로 이미지 넣는 함수삽입--></span>
+            </span>
+          </p>
+          <p class="info">
+            <span class="semester">{{board.lecture.semester}}수강자</span>
+          </p>
+          <p class="text">{{board.content}}</p>
+
+          <button type="button" class="btn btn-sm btn-primary" id="mypagebt" value={{board.lecture.lectureid}} onclick="location.href='{% url 'edit' board.id%}'">수정</button>
+         <button type="button" class="btn btn-sm btn-danger" value={{board.lecture.lectureid}} onclick="location.href='{% url 'delete' board.id%}'">삭제</button>
+
+        {% endif %}
+        {%endfor%}
+      </span>
+     
+    </div>
+</div>
+
+{% endblock %}

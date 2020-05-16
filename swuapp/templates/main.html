@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}main{% endblock %}
+{% block content %}
+
+{% if popup %}
+    <script>
+    alert("검색 결과가 없습니다.");
+    location.href("/main");
+    </script>  
+{% endif %}
+
+<form action="{% url 'search' %}" method="GET" class="nav-bar search">
+  <input onkeyup="enterkey();" type="text" name="q" value="{{q}}" class="search-query" placeholder="과목명, 교수명으로 검색">
+</form>
+<div class="section">
+  
+  <select class="semester-choice">
+    <option>2020-1</option>
+    <!--<option>2018-2</option>-->
+    <!--<option>2018-1</option>-->
+  </select>
+
+  <!--{{ my_lectures }}-->
+  <div class="mylectures">
+    <span class="lecture">
+      <h3> 내가 들은 과목 </h3>
+        <ul class="list-group list-group-flush">
+          {% for mylecture in mylecture %}
+          <li class="list-group-item">
+            <span class="name">{{ mylecture.mylectureid.lecturename }}</span>
+            <span class="professor">{{ mylecture.mylectureid.professor }}</span>
+            {% if mylecture.rating == "off" %}
+            <button type="button" class="btn btn-sm btn-danger" value={{mylecture.mylectureid.lectureid}}  onclick="location.href='{{ mylecture.get_absolute_url }}'">평가하기</button>
+            {% else %}
+            <button type="button" class="btn btn-sm" disabled="disabled">평가 완료</button>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+    </span>
+  </div>
+  
+
+<div class="section">
+  <h3>최근 강의평</h3>
+  {% for b in board %}
+    <hr>
+    <div class="articles">
+      <a class="article" href="{{ b.get_absolute_url }}"> <!--해당 과목의 detail url로 연결-->
+        <h3>{{b.lecture.lecturename}}</h3>
+        <p class="rate">
+          <span class="quality-star">
+            <span>퀄리티점수: {{b.quality}}점</span>
+          </span>
+          <span class="level-star">
+            <span>난이도 점수: {{b.challenge}}점</span>
+          </span>
+        </p>
+        <p class="info">
+          <span class="semester">19년 2학기 수강자</span>
+        </p>
+        <p class="text">{{b.content}}</p>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

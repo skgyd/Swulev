@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}New{% endblock %}
+{% block content %}
+
+<br>
+<div class="container">
+    <form method='post' action="{% url 'create' current_lecture.lectureid %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">강의 퀄리티</label>
+            <select multiple class="form-control" id="quality" name="quality">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            </select>
+        </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">강의 난이도</label>
+            <select multiple class="form-control" id="challenge" name="challenge">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            </select>
+        </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">강의 추천</label>
+            <select multiple class="form-control" id="recommend" name="recommend">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <optionvalue="5">5</option>
+            </select>
+        </div>
+        <br><br>
+        <h4>내용:</h4>
+        <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+        <br><br>
+        <button type="submit" class="btn btn-danger">평가완료</button>
+    </form>
+</div>
+
+{% endblock %}

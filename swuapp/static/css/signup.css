@@ -1,0 +1,6 @@
+.container {width: 420px; margin: 90px auto;}
+.container .form-control {margin: 10px 0;}
+.container .btn-primary {width: 100%; margin: 5px 0 5px 0;}
+.container .sub-info {margin: 30px 0 0 0;}
+.container .sub-info span {color: #989898; font-weight: bold;}
+.container .sub-info a {font-weight: bold; float: right;}

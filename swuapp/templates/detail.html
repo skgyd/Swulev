@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}detail{% endblock %}
+{% block content %}
+<div class="lecture-detail">
+      
+  <h2>{{current_lecture.lecturename}}</h2>
+  <p>
+    <label>교수명</label>
+    <span>{{current_lecture.professor}}</span>
+  </p>
+  <p class="semesters">
+    <label>개설학기</label>
+    <span>{{current_lecture.semester}}</span>
+  </p>
+</div>
+<div class="detail-article">
+  <h2>강의평</h2>
+  <div class="rating">
+    <div class="rate">
+      <span>
+        <span class="value">3.24</span>
+        <span class="quality-star">
+          <span class="on" style="width: 100%;"><!--평균 퀄리티 별점 이미지 --></span>
+        </span>
+        <span class="level-star">
+          <span class="on" style="width: 100%;"> <!-- 평균 난이도 별점 이미지 --></span>
+        </span>
+      </span>
+    </div>
+  </div>
+  {% for b in boards %}
+    <div class="articles">
+      <hr>
+      <article>
+        
+        <button type="button" class="btn btn-sm btn-primary" id="detailbt">추천</button>
+        <button type="button" class="btn btn-sm btn-danger">신고</button>
+      
+        <p class="rate">
+          <span class="quality-star">
+            <span class="on" style="width: 100%;">퀄리티점수: {{b.quality}}점</span>
+          </span>
+          <span class="level-star">
+            <span class="on" style="width: 100%;">난이도 점수: {{b.challenge}}점</span>
+          </span>
+        </p>
+        <p class="info">
+          <span class="semester">19년 2학기 수강자</span>
+        </p>
+        <p class="text">{{b.content}}</p>
+      </article>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
